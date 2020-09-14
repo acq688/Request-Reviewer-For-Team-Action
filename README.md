@@ -65,4 +65,4 @@ There seems to be a bug that the default `GITHUB TOKEN` doesn't have the correct
 Refer to this issue for more information: https://github.com/peter-evans/create-pull-request/issues/155
 
 ## License
-The project is licensed under MIT.
+The project is licensed under [MIT](https://github.com/acq688/Request-Reviewer-For-Team-Action/blob/master/LICENSE).
