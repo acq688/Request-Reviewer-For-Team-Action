@@ -1,3 +1,9 @@
 # Request-Reviewer-For-Team-Action
-Assign reviews based on the pr author's team. 
+
+## About
+
+## Usage
 Refer to this issue for a nasty bug: https://github.com/peter-evans/create-pull-request/issues/155
+
+## License
+The project is licensed under MIT.
