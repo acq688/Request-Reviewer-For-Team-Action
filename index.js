@@ -18,8 +18,8 @@ async function getConfig(client) {
         console.error(error);
     }
 
-    console.log('Config:');
-    console.log(config);
+    //console.log('Config:');
+    //console.log(config);
     return config
 }
 
@@ -31,8 +31,8 @@ async function fetchContent(client, repoPath) {
         ref: github.context.sha,
     });
 
-    console.log('Response:');
-    console.log(response);
+    //console.log('Response:');
+    //console.log(response);
     return Buffer.from(response.data.content, response.data.encoding).toString();
 }
 
@@ -57,8 +57,6 @@ async function getDesiredReviewAssignments(client, config) {
         teams: new Set()
     }
 
-    console.log("Does this work?");
-    console.log(config.when);
     for (const condition of config.when) {
         const authorSet = condition.author.nameIs || [];
         const teamSet = condition.author.teamIs || [];
@@ -68,39 +66,35 @@ async function getDesiredReviewAssignments(client, config) {
         const isAuthorOfInterest = authorSet.includes(author);
         const isOnTeamOfInterest = await isOnTeam(client, author, teamSet);
 
-        console.log(individualAssignments);
-        console.log(teamAssignments);
-        console.log(reviewerAssignments);
+        //console.log(individualAssignments);
+        //console.log(teamAssignments);
+        //console.log(reviewerAssignments);
         if (isAuthorOfInterest || isOnTeamOfInterest) {
             individualAssignments.forEach(reviewer => reviewerAssignments.individuals.add(reviewer));
             teamAssignments.forEach(reviewer => reviewerAssignments.teams.add(reviewer));
         }
     }
 
-    console.log(reviewerAssignments);
+    //console.log(reviewerAssignments);
     reviewerAssignments.individuals = [...reviewerAssignments.individuals];
     reviewerAssignments.teams = [...reviewerAssignments.teams];
 
-    console.log(reviewerAssignments);
+    //console.log(reviewerAssignments);
     return reviewerAssignments;
 }
 
 async function isOnTeam(client, author, teams) {
-    console.log('is in isOnTeam');
     for (const team of teams) {
-        console.log(team);
-        console.log(author);
-        console.log(github.context.payload);
-        console.log(github.context.payload.organization.name);
-        console.log(github.context.payload.organization.login);
-        console.log(github.context.payload.organization);
-        console.log(github.context.payload.organization.id);
+        //console.log(team);
+        //console.log(author);
+        //console.log(github.context.payload);
+        //console.log(github.context.payload.organization.name);
         const response = await client.teams.getMembershipForUserInOrg({
             org: github.context.payload.organization.login,
             team_slug: team,
             username: author,
         });
-        console.log(response);
+        //console.log(response);
         if (response.status == 200 && response.data.state != "pending") {
             return true;
         }
@@ -116,8 +110,8 @@ async function main() {
         await assignReviewers(client, reviewAssignments);
 
     } catch (error) {
-        // Shit blew up
-        console.log(error);
+        // Something did not go as planned...
+        // console.log(error);
         core.setFailed(error.message);
     }
 }
