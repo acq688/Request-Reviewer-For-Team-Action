@@ -1,0 +1,16 @@
+name: "Request Review For Team"
+author: acq688, myles2007
+description: >
+  Automatically request reviews from individuals or teams for
+  a pull request opened by any individuals or tea member of any given team.
+inputs:
+  GITHUB_TOKEN:
+    description: "Github token"
+    required: true
+  config:
+    description: "Configuration file"
+    required: true
+    default: ".github/request-review-for-team.yml"
+runs:
+    using: 'node12'
+    main: 'index.js'

@@ -1,0 +1,25 @@
+# This is an example configuration file.
+when:
+  - author:
+      # At least one of the following matches...
+      nameIs:
+        - Author1
+        - Author2
+      teamIs:
+        - Team1
+        - Team2
+    assign:
+      teams:
+        - ReviewTeam1
+        - ReviewTeam2
+      individuals:
+        - Reviewer1
+        - Reviewer2
+  - author:
+      nameIs: 
+        - Author3
+    assign:
+      teams:
+        - ReviewTeam3
+      individuals:
+        - Reviewer1

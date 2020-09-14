@@ -1,0 +1,26 @@
+{
+  "name": "request-reviewer-for-team-action",
+  "version": "1.0.0",
+  "description": "Assign reviews based on the pr author's team.",
+  "main": "index.js",
+  "dependencies": {
+    "@actions/core": "^1.2.5",
+    "@actions/github": "^4.0.0",
+    "lodash": "^4.17.20",
+    "yaml": "^1.10.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Testing: Beep Boop\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acq688/Request-Reviewer-For-Team-Action.git"
+  },
+  "author": "Amanda Quint & Myles Loffler",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/acq688/Request-Reviewer-For-Team-Action/issues"
+  },
+  "homepage": "https://github.com/acq688/Request-Reviewer-For-Team-Action#readme"
+}
