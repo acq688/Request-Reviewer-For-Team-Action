@@ -44,8 +44,8 @@ async function assignReviewers(client, { individuals, teams }) {
         reviewers: individuals,
         team_reviewers: teams,
     });
-    core.info('Assigned individual reviews to ${individuals}.');
-    core.info('Assigned team reviews to ${teams}.');
+    core.info(`Assigned individual reviews to ${individuals}.`);
+    core.info(`Assigned team reviews to ${teams}.`);
 }
 
 async function getDesiredReviewAssignments(client, config) {
@@ -79,7 +79,8 @@ async function getDesiredReviewAssignments(client, config) {
     reviewerAssignments.individuals = [...reviewerAssignments.individuals];
     reviewerAssignments.teams = [...reviewerAssignments.teams];
 
-    //console.log(reviewerAssignments);
+    console.log('Reviewer Assignments:');
+    console.log(reviewerAssignments);
     return reviewerAssignments;
 }
 
