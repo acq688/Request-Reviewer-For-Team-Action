@@ -1,5 +1,7 @@
 # Request-Reviewer-For-Team-Action
 
+![Node.js CI](https://github.com/acq688/Request-Reviewer-For-Team-Action/workflows/Node.js%20CI/badge.svg)
+
 ## About
 This action was built due to the need to assign a *team* to review a pr based on the author's *team*. Github doesn't make team information particularly easy to get to so we've built this Action to get around that.  
 
@@ -63,6 +65,9 @@ jobs:
 There seems to be a bug that the default `GITHUB TOKEN` doesn't have the correct permission to request a review from a team. To get around this I am using a machine user's personal access token instead of the default token.
 
 Refer to this issue for more information: https://github.com/peter-evans/create-pull-request/issues/155
+
+## TODO
+1. Planning on adding test coverage soon.
 
 ## License
 The project is licensed under [MIT](https://github.com/acq688/Request-Reviewer-For-Team-Action/blob/master/LICENSE).
