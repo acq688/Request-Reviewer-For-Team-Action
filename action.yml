@@ -1,9 +1,9 @@
 name: "Request Review For Team"
 author: acq688, myles2007
-description: >
-  Automatically request reviews from individuals or teams for
-  a pull request opened by any individuals or tea member of any given team.
-inputs:
+description: Assign reviews to individuals or teams based on the pr's author or author team.
+branding:
+  icon: user-check
+  color: purple
   GITHUB_TOKEN:
     description: "Github token"
     required: true
