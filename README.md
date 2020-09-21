@@ -3,7 +3,7 @@
 ![Node.js CI](https://github.com/acq688/Request-Reviewer-For-Team-Action/workflows/Node.js%20CI/badge.svg)
 
 ## About
-This action was built due to the need to assign a *team* to review a pr based on the author's *team*. Github doesn't make team information particularly easy to get to so we've built this Action to get around that.  
+At [BriteCore](https://britecore.com) we wanted to be able to assign a *team* to review a pr based on the author's *team*. Github doesn't particulary make getting team information easy to get to, so I assumed that other teams might have this need as well and built this action to help out. 
 
 ## Usage
 
