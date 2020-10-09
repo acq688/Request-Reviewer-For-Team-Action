@@ -59,9 +59,14 @@ async function getDesiredReviewAssignments(client, config) {
 
     for (const condition of config.when) {
         const authorSet = condition.author.nameIs || [];
+        const authorIgnorSet = condition.author.ignore.nameIs || [];
         const teamSet = condition.author.teamIs || [];
         const individualAssignments = condition.assign.individuals || [];
         const teamAssignments = condition.assign.teams || [];
+        
+        if (authorIgnoreSet.includes(author) {
+            continue;
+        }
 
         const isAuthorOfInterest = authorSet.includes(author);
         const isOnTeamOfInterest = await isOnTeam(client, author, teamSet);
