@@ -37,15 +37,17 @@ async function fetchContent(client, repoPath) {
 }
 
 async function assignReviewers(client, { individuals, teams }) {
-    await client.pulls.requestReviewers({
-        owner: github.context.repo.owner,
-        repo: github.context.repo.repo,
-        pull_number: github.context.payload.pull_request.number,
-        reviewers: individuals,
-        team_reviewers: teams,
-    });
-    core.info(`Assigned individual reviews to ${individuals}.`);
-    core.info(`Assigned team reviews to ${teams}.`);
+    if (individuals.length || teams.length) {
+        await client.pulls.requestReviewers({
+            owner: github.context.repo.owner,
+            repo: github.context.repo.repo,
+            pull_number: github.context.payload.pull_request.number,
+            reviewers: individuals,
+            team_reviewers: teams,
+        });
+        core.info(`Assigned individual reviews to ${individuals}.`);
+        core.info(`Assigned team reviews to ${teams}.`);
+    }
 }
 
 async function getDesiredReviewAssignments(client, config) {
