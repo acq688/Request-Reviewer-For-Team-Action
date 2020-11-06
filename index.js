@@ -90,14 +90,18 @@ async function isOnTeam(client, author, teams) {
         //console.log(author);
         //console.log(github.context.payload);
         //console.log(github.context.payload.organization.name);
-        const response = await client.teams.getMembershipForUserInOrg({
-            org: github.context.payload.organization.login,
-            team_slug: team,
-            username: author,
-        });
-        //console.log(response);
-        if (response.status == 200 && response.data.state != "pending") {
-            return true;
+        try {
+            const response = await client.teams.getMembershipForUserInOrg({
+                org: github.context.payload.organization.login,
+                team_slug: team,
+                username: author,
+            });
+            //console.log(response);
+            if (response.status == 200 && response.data.state != "pending") {
+                return true;
+            }
+        } catch (error) {
+            console.log('Error when checking memebership for author ', author, ' in team ', team, '. Message: ', error.message);
         }
     }
     return false
