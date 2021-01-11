@@ -37,15 +37,17 @@ async function fetchContent(client, repoPath) {
 }
 
 async function assignReviewers(client, { individuals, teams }) {
-    await client.pulls.requestReviewers({
-        owner: github.context.repo.owner,
-        repo: github.context.repo.repo,
-        pull_number: github.context.payload.pull_request.number,
-        reviewers: individuals,
-        team_reviewers: teams,
-    });
-    core.info(`Assigned individual reviews to ${individuals}.`);
-    core.info(`Assigned team reviews to ${teams}.`);
+    if (individuals.length || teams.length) {
+        await client.pulls.requestReviewers({
+            owner: github.context.repo.owner,
+            repo: github.context.repo.repo,
+            pull_number: github.context.payload.pull_request.number,
+            reviewers: individuals,
+            team_reviewers: teams,
+        });
+        core.info(`Assigned individual reviews to ${individuals}.`);
+        core.info(`Assigned team reviews to ${teams}.`);
+    }
 }
 
 async function getDesiredReviewAssignments(client, config) {
@@ -95,14 +97,18 @@ async function isOnTeam(client, author, teams) {
         //console.log(author);
         //console.log(github.context.payload);
         //console.log(github.context.payload.organization.name);
-        const response = await client.teams.getMembershipForUserInOrg({
-            org: github.context.payload.organization.login,
-            team_slug: team,
-            username: author,
-        });
-        //console.log(response);
-        if (response.status == 200 && response.data.state != "pending") {
-            return true;
+        try {
+            const response = await client.teams.getMembershipForUserInOrg({
+                org: github.context.payload.organization.login,
+                team_slug: team,
+                username: author,
+            });
+            //console.log(response);
+            if (response.status == 200 && response.data.state != "pending") {
+                return true;
+            }
+        } catch (error) {
+            console.log('Error when checking memebership for author ', author, ' in team ', team, '. Message: ', error.message);
         }
     }
     return false
