@@ -32,7 +32,7 @@ when:
     ignore:
       nameIs:
         - Author1
-        - Autor2
+        - Author2
 
   - author: 
       nameIs: 
