@@ -4,6 +4,7 @@ description: Assign reviews to individuals or teams based on the pr's author or 
 branding:
   icon: user-check
   color: purple
+inputs:
   GITHUB_TOKEN:
     description: "Github token"
     required: true
