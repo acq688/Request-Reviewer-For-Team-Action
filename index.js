@@ -66,7 +66,7 @@ async function getDesiredReviewAssignments(client, config) {
         const individualAssignments = condition.assign.individuals || [];
         const teamAssignments = condition.assign.teams || [];
 
-        if (authorIgnoreSet.includes(author) {
+        if (authorIgnoreSet.includes(author)) {
             continue;
         }
 
