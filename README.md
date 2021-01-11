@@ -28,6 +28,11 @@ when:
       individuals:
         - Reviewer1
         - Reviewer2
+    # Ignore authors even if they belong to a specified team.
+    ignore:
+      nameIs:
+        - Author1
+        - Author2
 
   - author: 
       nameIs: 
