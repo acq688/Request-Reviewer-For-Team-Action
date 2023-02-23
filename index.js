@@ -63,14 +63,22 @@ async function getDesiredReviewAssignments(client, config) {
         const authorSet = condition.author.nameIs || [];
         const authorIgnoreSet = condition.author.ignore.nameIs || [];
         const teamSet = condition.author.teamIs || [];
+        const teamIgnoreSet = condition.author.ignore.teamIs || [];
         const individualAssignments = condition.assign.individuals || [];
         const teamAssignments = condition.assign.teams || [];
 
-        if (authorIgnoreSet.includes(author)) {
+        const authorIsIgnored = authorIgnoreSet.includes(author);
+        const authorIsInIgnoredTeam = await isOnTeam(
+          client,
+          author,
+          teamIgnoreSet
+        );
+        if (authorIsIgnored || authorIsInIgnoredTeam) {
             continue;
         }
 
-        const isAuthorOfInterest = authorSet.includes(author);
+        const isAuthorOfInterest =
+          authorSet.includes(author) || authorSet.includes('any');
         const isOnTeamOfInterest = await isOnTeam(client, author, teamSet);
 
         //console.log(individualAssignments);

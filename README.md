@@ -34,14 +34,28 @@ when:
         - Author1
         - Author2
 
+  # Any PR which is from a specific author.
   - author: 
       nameIs: 
-        - acq688
+        - myles2007
     assign:
       individuals:
-        - myles2007
+        - acq688
+
+  # Any PR which is from a specific team.
   - author: 
       teamIs: 
+        - solution-architecture
+    assign:
+      individuals:
+        - acq688
+
+  # Any PR which is not from a specific team.
+  - author:
+      nameIs:
+        - any
+    ignore:
+      teamIs:
         - solution-architecture
     assign:
       individuals:
